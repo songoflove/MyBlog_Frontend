@@ -7,22 +7,14 @@
           <h1>Nicole's Blog</h1>
           <h3>こんにちは~</h3>
         </div>
-        <div class="header-bar-item">
-          <el-button type="warning" round @click="addBlogForm = true">
-            <el-icon style="vertical-align: middle">
-              <Edit />
-            </el-icon>
-            <span style="vertical-align: middle"> New Blog </span>
-          </el-button>
-        </div>
       </div>
 
-      <hr />
+      <el-divider class="nav-divider"/>
       <div class="navigation-bar">
         <a href="" class="nav-text">HOME</a>
         <div>
           <el-dropdown>
-            <span class="el-dropdown-link">
+            <span class="nav-text" id="nav-text">
               LIFE
               <el-icon class="el-icon--right">
                 <arrow-down />
@@ -31,16 +23,16 @@
             <template #dropdown>
               <el-dropdown-menu>
                 <el-dropdown-item>Daily life</el-dropdown-item>
-                <el-dropdown-item>Rent a house</el-dropdown-item>
-                <el-dropdown-item>Save money</el-dropdown-item>
-                <el-dropdown-item disabled>See a doctor</el-dropdown-item>
+                <el-dropdown-item>Health</el-dropdown-item>
+                <el-dropdown-item>Save money Tips</el-dropdown-item>
+                <el-dropdown-item disabled>Exercise</el-dropdown-item>
               </el-dropdown-menu>
             </template>
           </el-dropdown>
         </div>
         <div>
           <el-dropdown>
-            <span class="el-dropdown-link">
+            <span class="nav-text">
               WORK
               <el-icon class="el-icon--right">
                 <arrow-down />
@@ -57,7 +49,7 @@
         </div>
         <div>
           <el-dropdown>
-            <span class="el-dropdown-link">
+            <span class="nav-text">
               STUDY
               <el-icon class="el-icon--right">
                 <arrow-down />
@@ -74,7 +66,7 @@
         </div>
         <div>
           <el-dropdown>
-            <span class="el-dropdown-link">
+            <span class="nav-text">
               TRAVEL
               <el-icon class="el-icon--right">
                 <arrow-down />
@@ -91,7 +83,7 @@
         </div>
         <a href="" class="nav-text">ABOUT ME</a>
       </div>
-      <hr />
+      <el-divider class="nav-divider"/>
       <!-- main -->
       <div class="home-main-box">
         <div class="main-left">
@@ -178,61 +170,54 @@
 
         </div>
         <div class="main-right">
+          <div class="right-box0">
+            <el-button round @click="addBlogForm = true" color="#F9E79F " size="large">
+              <el-icon style="vertical-align: middle">
+                <Edit />
+              </el-icon>
+              <span style="vertical-align: middle"> New Blog </span>
+            </el-button>
+          </div>
+        
           <div class="right-box1">
             <span class="Title-tag">FOLLOW ME</span>
             <div class="contact-links">
               <a href="" target="_blank" class="contact-details">
-                <i class="fa fa-instagram"></i>Instagram</a
+                <i class="fa fa-instagram" id="contact-icon"></i>Instagram</a
               >
               <a
                 href=""
                 target="_blank"
                 class="contact-details"
-                id="profile-link"
               >
-                <i class="fa fa-github"></i>Github</a
-              >
-              <a href="" target="_blank" class="contact-details">
-                <i class="fa fa-twitter"></i>Twitter</a
+                <i class="fa fa-github" id="contact-icon"></i>Github</a
               >
               <a href="" target="_blank" class="contact-details">
-                <i class="fa fa-at"></i>Email</a
+                <i class="fa fa-twitter" id="contact-icon"></i>Twitter</a
+              >
+              <a href="" target="_blank" class="contact-details">
+                <i class="fa fa-at" id="contact-icon"></i>Email</a
               >
             </div>
           </div>
           <div class="right-box2">
             <span class="Title-tag">Tags</span>
             <div class="tag-box">
-              <el-button class="tag-item" round>Java</el-button>
-              <el-button class="tag-item" round>Javascript</el-button>
-              <el-button class="tag-item" round>Html</el-button>
-              <el-button class="tag-item" round>CSS</el-button>
-              <el-button class="tag-item" round>Freelance</el-button>
-              <el-button class="tag-item" round>Japanese</el-button>
-              <el-button class="tag-item" round>English</el-button>
-              <el-button class="tag-item" round>Books</el-button>
-              <el-button class="tag-item" round>Movies</el-button>
-              <el-button class="tag-item" round>Food</el-button>
-              <el-button class="tag-item" round>Work</el-button>
-              <el-button class="tag-item" round>Bank</el-button>
-              <el-button class="tag-item" round>Relationship</el-button>
-              <el-button class="tag-item" round>Diary</el-button>
-              <el-button class="tag-item" round>Gym</el-button>
-              <el-button class="tag-item" round>Health</el-button>
-              <el-button class="tag-item" round>Shopping</el-button>
-              <el-button class="tag-item" round>Coupon</el-button>
+              <el-button class="tag-item" round v-for="tag in tags"
+              :key="tag"
+              color="#FCF3CF">{{tag}}</el-button>
             </div>
           </div>
         </div>
       </div>
       <!-- footer -->
-      <!-- todo -->
       <div class="footer">
-        <el-divider />
-        <p>MIT Licensed | Copyright &copy; Nicole, 2022-present</p>
+        <el-divider class="footer-divider"/>
+        <p>MIT Licensed | Copyright &copy; Nicole, 2022 ~ present</p>
       </div>
-    </div>
   </div>
+    </div>
+
   <!-- add blog dialog -->
   <el-dialog v-model="addBlogForm" title="Write a new blog">
     <el-form :model="blogForm">
@@ -271,6 +256,11 @@ const blogForm = reactive({
   title: '',
   content: ''
 })
+
+// tags
+const tags = ["Java", "Css", "Html", "JavaScript", "Freelance", "Japanese","English",
+"Books", "Movies", "Food", "Cookding","Job","Bank","Relationship","Diary","Gym","Health",
+"Shopping","Fashion","Coupon","Bank"];
 </script>
 
 <style lang="scss">
@@ -282,9 +272,11 @@ const blogForm = reactive({
 h1 {
   font-family: 'Ma Shan Zheng', cursive;
   margin: 10px 0 0 0;
+  color:#F7A4A4;
+  font-size: 40px;
 }
 h3 {
-  font-family: 'Poppins', sans-serif;
+  color: #FEBE8C;
 }
 .home-body-box {
   margin: 0 100px;
@@ -298,35 +290,41 @@ h3 {
 }
 .nav-text {
   text-decoration: none;
+  color: #16A085 ;
+  font-family: 'Fredoka One', cursive;
 }
-.example-showcase .el-dropdown-link {
-  cursor: pointer;
-  color: #409eff;
-  display: flex;
-  align-items: center;
-}
+
+// .example-showcase .el-dropdown-link {
+//   cursor: pointer;
+//   color: #409eff;
+//   display: flex;
+//   align-items: center;
+// }
 .footer {
-  position: fixed;
   font-size: 14px;
   bottom: 0;
   text-align: center;
   color: #f1948a;
   width: 100%;
-  // background-color: #fffcf6;
+  padding-bottom: 15px;
 }
+
 .header-bar-item {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 10px;
 }
 .header-bar {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
 }
+.nav-divider {
+  margin: 12px 0;
+}
 .article-content {
-  border: 1px dashed #f1948a;
+  border: 1px dashed #B6E2A1;
   margin: 5px 0;
   border-radius: 5px;
   display: flex;
@@ -361,6 +359,9 @@ h3 {
   width: 250px;
   margin-left: 10px;
 }
+.right-box0 {
+  margin-bottom: 40px;
+}
 .home-main-box {
   display: flex;
   flex-direction: row;
@@ -377,6 +378,7 @@ h3 {
 .Title-tag {
   font-size: 20px;
   font-weight: bold;
+  // font-family: 'Caveat', cursive;
   font-family: "Poppins", sans-serif;
 }
 .tag-item {
@@ -392,6 +394,9 @@ h3 {
   margin: 0 20px 20px 0;
   text-decoration: none;
   font-size: 18px;
+}
+#contact-icon {
+  margin-right: 5px;
 }
 .right-box2 {
   margin-top: 20px;
