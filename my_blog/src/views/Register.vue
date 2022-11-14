@@ -1,28 +1,30 @@
 <template>
-  <div class="login-body">
-    <div class="login-panel">
-      <div class="login-title">Login</div>
+  <div class="register-body">
+    <div class="register-panel">
+      <div class="register-title">Register</div>
       <el-form
-        ref="loginFormRef"
-        :model="LoginFormData"
-        :rules="loginRules"
-        label-width="100px"
-        style="max-width: 480px"
+        ref="registerFormRef"
+        :model="RegisterFormData"
+        :rules="registerRules"
+        label-width="150px"
         label-position="left"
       >
         <el-form-item label="Username" prop="username">
-          <el-input v-model="LoginFormData.username" placeholder="Please input your username" />
+          <el-input v-model="RegisterFormData.username" placeholder="Please input your username" />
         </el-form-item>
         <el-form-item label="Password" prop="password">
-          <el-input type="password" v-model="LoginFormData.password" placeholder="Please input your password"/>
+          <el-input type="password" v-model="RegisterFormData.password" placeholder="Please input your password"/>
+        </el-form-item>
+        <el-form-item label="Confirm Password" prop="password">
+          <el-input type="password" v-model="RegisterFormData.password" placeholder="Please repeat your password"/>
         </el-form-item>
         <el-button
-         color="#159AC1" 
-         class="loginBtn"
-          @click="login(loginFormRef)"
-          >Login</el-button
+          color="#159AC1" 
+          class="registerBtn"
+          @click="register(registerFormRef)"
+          >Register</el-button
         >
-        <div class="info">Don't have an account? <a href="/register" style="color:#800080">Register</a></div>
+        <div class="info">Already have an account? <a href="/login" style="color:#800080">Login</a></div>
       </el-form>
     </div>
   </div>
@@ -31,13 +33,13 @@
 <script setup>
 import { reactive, ref } from "vue";
 
-const loginFormRef = ref();
-const LoginFormData = reactive({
+const registerFormRef = ref();
+const RegisterFormData = reactive({
   username: "testUser",
   password: "123456",
 });
 
-const loginRules = reactive({
+const registerRules = reactive({
   username: [
     { required: true, message: "Please input your username" },
      { min: 3, max: 12, message: 'Length should be 3 to 12', trigger: 'blur' },
@@ -51,13 +53,13 @@ const loginRules = reactive({
   ],
 });
 
-// const login = () => {
+// const register = () => {
    
 // };
 </script>
 
 <style lang="scss">
-.login-body {
+.register-body {
   width: 100%;
   height: calc(100vh);
   background-image: url(../assets/login_bg.jpg);
@@ -69,24 +71,24 @@ const loginRules = reactive({
   font-family: 'Poppins', sans-serif;
 }
 
-.login-panel {
-  width: 350px;
-  height: 300px;
+.register-panel {
+  width: 400px;
+  height: 320px;
   background: rgba(255, 255, 255, 0.8);
   padding: 20px;
   border-radius: 10px;
   box-shadow: 2px 2px 10px #ddd;
 }
 
-.login-title {
+.register-title {
   font-size: 24px;
+  font-weight: bold;
   text-align: center;
   margin-bottom: 20px;
   color: #15C15B;
-  font-weight: bold;
 }
-.loginBtn {
-   width: 100%; 
+.registerBtn {
+  width: 100%; 
   margin-top: 10px;
 }
 .info {
