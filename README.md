@@ -1,2 +1,2 @@
 # MyBlog_Frontend
-Using vue 3  + element plus to build a blog page and management page.
+Using vue 3  + element plus to build a personal blog.
