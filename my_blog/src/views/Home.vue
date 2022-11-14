@@ -118,6 +118,7 @@
           </div>
 
           <div class="right-box1">
+            <img class="avatar" src="../assets/avatar.png" />
             <span class="Title-tag">FOLLOW ME</span>
             <div class="contact-links">
               <a href="" target="_blank" class="contact-details">
@@ -235,7 +236,7 @@ const tags = [
 .home-body {
   background-color: #fffcf6;
   width: 100%;
-  height: calc(100vh);
+  height: 100%;
 }
 h1 {
   font-family: "Ma Shan Zheng", cursive;
@@ -325,6 +326,15 @@ h3 {
 .right-box0 {
   margin-bottom: 40px;
 }
+.right-box1{
+  display: flex;
+  flex-direction: column;
+}
+.avatar {
+  width: 120px;
+   height: 120px;
+    margin:0 0 30px 60px;
+}
 .home-main-box {
   display: flex;
   flex-direction: row;
@@ -351,7 +361,7 @@ h3 {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  margin: 20px 0;
+  margin: 20px 0 20px 20px;
 }
 .contact-details {
   margin: 0 20px 20px 0;
@@ -363,6 +373,6 @@ h3 {
   margin-right: 5px;
 }
 .right-box2 {
-  margin-top: 20px;
+  margin-top: 10px;
 }
 </style>

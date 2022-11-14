@@ -99,6 +99,7 @@
           </div>
 
           <div class="right-box1">
+            <img style="width: 120px; height: 120px; margin:0 0 30px 60px;" src="../assets/avatar.png" />
             <span class="Title-tag">FOLLOW ME</span>
             <div class="contact-links">
               <a href="" target="_blank" class="contact-details">
@@ -216,7 +217,7 @@ const tags = [
 .home-body {
   background-color: #fffcf6;
   width: 100%;
-  height: calc(100vh);
+  height: 100%;
 }
 h1 {
   font-family: "Ma Shan Zheng", cursive;
@@ -313,6 +314,10 @@ h3 {
 }
 .right-box0 {
   margin-bottom: 40px;
+}
+.right-box1{
+  display: flex;
+  flex-direction: column;
 }
 .home-main-box {
   display: flex;
