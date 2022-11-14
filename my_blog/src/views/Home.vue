@@ -8,7 +8,7 @@
           <h3>こんにちは~</h3>
         </div>
         <div class="header-bar-item">
-          <el-button type="warning" round @click="addBlog">
+          <el-button type="warning" round @click="addBlogForm = true">
             <el-icon style="vertical-align: middle">
               <Edit />
             </el-icon>
@@ -16,6 +16,7 @@
           </el-button>
         </div>
       </div>
+
       <hr />
       <div class="navigation-bar">
         <a href="" class="nav-text">HOME</a>
@@ -232,7 +233,27 @@
       </div>
     </div>
   </div>
+  <!-- add blog dialog -->
+  <el-dialog v-model="addBlogForm" title="Write a new blog">
+    <el-form :model="blogForm">
+      <el-form-item label="Blog Title" :label-width="formLabelWidth">
+        <el-input v-model="blogForm.title" autocomplete="off" />
+      </el-form-item>
+      <el-form-item label="Blog Content" :label-width="formLabelWidth">
+        <el-input v-model="blogForm.content" autocomplete="off" type="textarea"/>
+      </el-form-item>
+    </el-form>
+    <template #footer>
+      <span class="dialog-footer">
+        <el-button @click="addBlogForm = false">Cancel</el-button>
+        <el-button type="primary" @click="addBlogForm = false">
+          Post
+        </el-button>
+      </span>
+    </template>
+  </el-dialog>
 </template>
+
 <script setup>
 import {
   Delete,
@@ -240,7 +261,18 @@ import {
   ArrowRight,
   ArrowDown,
 } from "@element-plus/icons-vue";
+import { reactive, ref } from 'vue'
+
+// dialog
+const addBlogForm = ref(false)
+const formLabelWidth = '140px'
+
+const blogForm = reactive({
+  title: '',
+  content: ''
+})
 </script>
+
 <style lang="scss">
 .home-body {
   background-color: #fffcf6;
