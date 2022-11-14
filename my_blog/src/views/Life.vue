@@ -1,49 +1,12 @@
 <template>
   <div class="home-body">
     <div class="home-body-box">
-      <!-- header -->
-      <div class="header-bar">
-        <div class="header-bar-item">
-          <h1>Nicole's Blog</h1>
-          <h3>こんにちは~</h3>
-        </div>
-      </div>
-      <el-divider class="nav-divider" />
-      <div class="navigation-bar">
-        <router-link class="nav-text" to="/home">HOME</router-link>
-        <router-link class="nav-text" to="/life">LIFE</router-link>
-        <router-link class="nav-text" to="/work">WORK</router-link>
-        <router-link class="nav-text" to="/study">STUDY</router-link>
-        <router-link class="nav-text" to="/travel">TRAVEL</router-link>
-        <router-link class="nav-text" to="/me">ABOUT ME</router-link>
-      </div>
-      <el-divider class="nav-divider" />
+      <Header></Header>
       <!-- main -->
       <div class="home-main-box">
         <div class="main-left">
           <div class="article-content">
-            <div class="article-header">Life</div>
-            <el-divider class="article-divider" />
-            <div class="article-item">
-              <div>Article contenxxxxxxxxxxxxxxxt</div>
-              <el-button text
-                >Read more
-                <el-icon><ArrowRight /></el-icon>
-              </el-button>
-            </div>
-            <div class="article-item">
-              <div>
-                <el-icon><Calendar /></el-icon>
-                2022-06-19
-              </div>
-              <el-icon size="small" class="art-del-btn">
-                <Delete />
-              </el-icon>
-            </div>
-          </div>
-          
-          <div class="article-content">
-            <div class="article-header">Life</div>
+            <div class="article-header">Article 1 Header</div>
             <el-divider class="article-divider" />
             <div class="article-item">
               <div>Article contenxxxxxxxxxxxxxxxt</div>
@@ -63,7 +26,47 @@
             </div>
           </div>
           <div class="article-content">
-            <div class="article-header">Life</div>
+            <div class="article-header">Article 2 Header</div>
+            <el-divider class="article-divider" />
+            <div class="article-item">
+              <div>Article contenxxxxxxxxxxxxxxxt</div>
+              <el-button text
+                >Read more
+                <el-icon><ArrowRight /></el-icon>
+              </el-button>
+            </div>
+            <div class="article-item">
+              <div>
+                <el-icon><Calendar /></el-icon>
+                2022-06-19
+              </div>
+              <el-icon size="small" class="art-del-btn">
+                <Delete />
+              </el-icon>
+            </div>
+          </div>
+          <div class="article-content">
+            <div class="article-header">Article 3 Header</div>
+            <el-divider class="article-divider" />
+            <div class="article-item">
+              <div>Article contenxxxxxxxxxxxxxxxt</div>
+              <el-button text
+                >Read more
+                <el-icon><ArrowRight /></el-icon>
+              </el-button>
+            </div>
+            <div class="article-item">
+              <div>
+                <el-icon><Calendar /></el-icon>
+                2022-06-19
+              </div>
+              <el-icon size="small" class="art-del-btn">
+                <Delete />
+              </el-icon>
+            </div>
+          </div>
+          <div class="article-content">
+            <div class="article-header">Article 4 Header</div>
             <el-divider class="article-divider" />
             <div class="article-item">
               <div>Article contenxxxxxxxxxxxxxxxt</div>
@@ -84,22 +87,8 @@
           </div>
         </div>
         <div class="main-right">
-          <div class="right-box0">
-            <el-button
-              round
-              @click="addBlogForm = true"
-              color="#F9E79F "
-              size="large"
-            >
-              <el-icon style="vertical-align: middle">
-                <Edit />
-              </el-icon>
-              <span style="vertical-align: middle"> New Blog </span>
-            </el-button>
-          </div>
-
           <div class="right-box1">
-            <img style="width: 120px; height: 120px; margin:0 0 30px 60px;" src="../assets/avatar.png" />
+            <img class="avatar" src="../assets/avatar.png" />
             <span class="Title-tag">FOLLOW ME</span>
             <div class="contact-links">
               <a href="" target="_blank" class="contact-details">
@@ -116,26 +105,8 @@
               >
             </div>
           </div>
-          <div class="right-box2">
-            <span class="Title-tag">Tags</span>
-            <div class="tag-box">
-              <el-button
-                class="tag-item"
-                round
-                v-for="tag in tags"
-                :key="tag"
-                color="#FCF3CF"
-                >{{ tag }}</el-button
-              >
-            </div>
-          </div>
         </div>
       </div>
-      <!-- footer -->
-      <!-- <div class="footer">
-        <el-divider class="footer-divider"/>
-        <p>MIT Licensed | Copyright &copy; Nicole, 2022 ~ present</p>
-      </div> -->
     </div>
     <!-- footer -->
     <div class="footer">
@@ -144,29 +115,6 @@
     </div>
   </div>
 
-  <!-- add blog dialog -->
-  <el-dialog v-model="addBlogForm" title="Write a new blog">
-    <el-form :model="blogForm">
-      <el-form-item label="Blog Title" :label-width="formLabelWidth">
-        <el-input v-model="blogForm.title" autocomplete="off" />
-      </el-form-item>
-      <el-form-item label="Blog Content" :label-width="formLabelWidth">
-        <el-input
-          v-model="blogForm.content"
-          autocomplete="off"
-          type="textarea"
-        />
-      </el-form-item>
-    </el-form>
-    <template #footer>
-      <span class="dialog-footer">
-        <el-button @click="addBlogForm = false">Cancel</el-button>
-        <el-button type="primary" @click="addBlogForm = false">
-          Post
-        </el-button>
-      </span>
-    </template>
-  </el-dialog>
 </template>
 
 <script setup>
@@ -174,43 +122,9 @@ import {
   Delete,
   Calendar,
   ArrowRight,
-  ArrowDown,
 } from "@element-plus/icons-vue";
-import { reactive, ref } from "vue";
+import Header from "../components/Header.vue"
 
-// dialog
-const addBlogForm = ref(false);
-const formLabelWidth = "140px";
-
-const blogForm = reactive({
-  title: "",
-  content: "",
-});
-
-// tags
-const tags = [
-  "Java",
-  "Css",
-  "Html",
-  "JavaScript",
-  "Freelance",
-  "Japanese",
-  "English",
-  "Books",
-  "Movies",
-  "Food",
-  "Cookding",
-  "Job",
-  "Bank",
-  "Relationship",
-  "Diary",
-  "Gym",
-  "Health",
-  "Shopping",
-  "Fashion",
-  "Coupon",
-  "Bank",
-];
 </script>
 
 <style lang="scss">
@@ -219,37 +133,9 @@ const tags = [
   width: 100%;
   height: 100%;
 }
-h1 {
-  font-family: "Ma Shan Zheng", cursive;
-  margin: 10px 0 0 0;
-  color: #f7a4a4;
-  font-size: 40px;
-}
-h3 {
-  color: #febe8c;
-}
+
 .home-body-box {
   margin: 0 100px;
-}
-.navigation-bar {
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  margin: 20px 0;
-  position: sticky;
-}
-.nav-text {
-  text-decoration: none;
-  color: #d98880;
-  font-family: "Fredoka One", cursive;
-}
-
-.example-showcase {
-  cursor: pointer;
-  color: #409eff;
-  display: flex;
-  align-items: center;
-  font-family: "Fredoka One", cursive;
 }
 .footer {
   font-size: 14px;
@@ -260,21 +146,6 @@ h3 {
   padding-bottom: 15px;
   margin-top: 15px;
   background-color: #fffcf6;
-}
-
-.header-bar-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 10px;
-}
-.header-bar {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.nav-divider {
-  margin: 12px 0;
 }
 .article-content {
   border: 1px dashed #b6e2a1;
@@ -312,51 +183,34 @@ h3 {
   width: 280px;
   margin-left: 10px;
 }
-.right-box0 {
-  margin-bottom: 40px;
-}
-.right-box1{
+.right-box1 {
   display: flex;
   flex-direction: column;
+}
+.avatar {
+  width: 120px;
+  height: 120px;
+  margin: 0 0 30px 60px;
 }
 .home-main-box {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
-.tag-box {
-  width: 250px;
-  display: flex;
-  flex-wrap: wrap;
-  margin-top: 20px;
-  align-items: stretch;
-  text-align: center;
-}
-.Title-tag {
-  font-size: 20px;
-  font-weight: bold;
-  // font-family: 'Caveat', cursive;
-  font-family: "Poppins", sans-serif;
-}
-.tag-item {
-  margin: 5px 0;
-}
 .contact-links {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  margin: 20px 0;
+  margin: 20px 0 20px 20px;
 }
 .contact-details {
   margin: 0 20px 20px 0;
   text-decoration: none;
   font-size: 18px;
-  color: #16A085;
+  color: #16a085;
 }
 #contact-icon {
   margin-right: 5px;
 }
-.right-box2 {
-  margin-top: 20px;
-}
+
 </style>

@@ -2,22 +2,7 @@
   <div class="home-body">
     <div class="home-body-box">
       <!-- header -->
-      <div class="header-bar">
-        <div class="header-bar-item">
-          <h1>Nicole's Blog</h1>
-          <h3>こんにちは~</h3>
-        </div>
-      </div>
-      <el-divider class="nav-divider" />
-      <div class="navigation-bar">
-        <router-link class="nav-text" to="/home">HOME</router-link>
-        <router-link class="nav-text" to="/life">LIFE</router-link>
-        <router-link class="nav-text" to="/work">WORK</router-link>
-        <router-link class="nav-text" to="/study">STUDY</router-link>
-        <router-link class="nav-text" to="/travel">TRAVEL</router-link>
-        <router-link class="nav-text" to="/me">ABOUT ME</router-link>
-      </div>
-      <el-divider class="nav-divider" />
+      <Header></Header>
       <!-- main -->
       <div class="home-main-box">
         <div class="main-left">
@@ -150,11 +135,6 @@
           </div>
         </div>
       </div>
-      <!-- footer -->
-      <!-- <div class="footer">
-        <el-divider class="footer-divider"/>
-        <p>MIT Licensed | Copyright &copy; Nicole, 2022 ~ present</p>
-      </div> -->
     </div>
     <!-- footer -->
     <div class="footer">
@@ -193,9 +173,10 @@ import {
   Delete,
   Calendar,
   ArrowRight,
-  ArrowDown,
 } from "@element-plus/icons-vue";
 import { reactive, ref } from "vue";
+import Header from "../components/Header.vue"
+
 
 // dialog
 const addBlogForm = ref(false);
@@ -238,30 +219,11 @@ const tags = [
   width: 100%;
   height: 100%;
 }
-h1 {
-  font-family: "Ma Shan Zheng", cursive;
-  margin: 10px 0 0 0;
-  color: #f7a4a4;
-  font-size: 40px;
-}
-h3 {
-  color: #febe8c;
-}
+
 .home-body-box {
   margin: 0 100px;
 }
-.navigation-bar {
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  margin: 20px 0;
-  position: sticky;
-}
-.nav-text {
-  text-decoration: none;
-  color: #d98880;
-  font-family: "Fredoka One", cursive;
-}
+
 .footer {
   font-size: 14px;
   bottom: 0;
@@ -273,20 +235,6 @@ h3 {
   background-color: #fffcf6;
 }
 
-.header-bar-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 10px;
-}
-.header-bar {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.nav-divider {
-  margin: 12px 0;
-}
 .article-content {
   border: 1px dashed #b6e2a1;
   margin: 5px 0;
@@ -326,14 +274,14 @@ h3 {
 .right-box0 {
   margin-bottom: 40px;
 }
-.right-box1{
+.right-box1 {
   display: flex;
   flex-direction: column;
 }
 .avatar {
   width: 120px;
-   height: 120px;
-    margin:0 0 30px 60px;
+  height: 120px;
+  margin: 0 0 30px 60px;
 }
 .home-main-box {
   display: flex;
@@ -367,7 +315,7 @@ h3 {
   margin: 0 20px 20px 0;
   text-decoration: none;
   font-size: 18px;
-  color: #16A085;
+  color: #16a085;
 }
 #contact-icon {
   margin-right: 5px;

@@ -35,8 +35,8 @@ import { reactive, ref } from "vue";
 
 const registerFormRef = ref();
 const RegisterFormData = reactive({
-  username: "testUser",
-  password: "123456",
+  username: "",
+  password: "",
 });
 
 const registerRules = reactive({
