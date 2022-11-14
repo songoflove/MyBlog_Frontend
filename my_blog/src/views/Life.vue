@@ -22,7 +22,28 @@
       <div class="home-main-box">
         <div class="main-left">
           <div class="article-content">
-            <div class="article-header">Article 1 Header</div>
+            <div class="article-header">Life</div>
+            <el-divider class="article-divider" />
+            <div class="article-item">
+              <div>Article contenxxxxxxxxxxxxxxxt</div>
+              <el-button text
+                >Read more
+                <el-icon><ArrowRight /></el-icon>
+              </el-button>
+            </div>
+            <div class="article-item">
+              <div>
+                <el-icon><Calendar /></el-icon>
+                2022-06-19
+              </div>
+              <el-icon size="small" class="art-del-btn">
+                <Delete />
+              </el-icon>
+            </div>
+          </div>
+          
+          <div class="article-content">
+            <div class="article-header">Life</div>
             <el-divider class="article-divider" />
             <div class="article-item">
               <div>Article contenxxxxxxxxxxxxxxxt</div>
@@ -42,47 +63,7 @@
             </div>
           </div>
           <div class="article-content">
-            <div class="article-header">Article 2 Header</div>
-            <el-divider class="article-divider" />
-            <div class="article-item">
-              <div>Article contenxxxxxxxxxxxxxxxt</div>
-              <el-button text
-                >Read more
-                <el-icon><ArrowRight /></el-icon>
-              </el-button>
-            </div>
-            <div class="article-item">
-              <div>
-                <el-icon><Calendar /></el-icon>
-                2022-06-19
-              </div>
-              <el-icon size="small" class="art-del-btn">
-                <Delete />
-              </el-icon>
-            </div>
-          </div>
-          <div class="article-content">
-            <div class="article-header">Article 3 Header</div>
-            <el-divider class="article-divider" />
-            <div class="article-item">
-              <div>Article contenxxxxxxxxxxxxxxxt</div>
-              <el-button text
-                >Read more
-                <el-icon><ArrowRight /></el-icon>
-              </el-button>
-            </div>
-            <div class="article-item">
-              <div>
-                <el-icon><Calendar /></el-icon>
-                2022-06-19
-              </div>
-              <el-icon size="small" class="art-del-btn">
-                <Delete />
-              </el-icon>
-            </div>
-          </div>
-          <div class="article-content">
-            <div class="article-header">Article 4 Header</div>
+            <div class="article-header">Life</div>
             <el-divider class="article-divider" />
             <div class="article-item">
               <div>Article contenxxxxxxxxxxxxxxxt</div>
@@ -259,6 +240,14 @@ h3 {
 .nav-text {
   text-decoration: none;
   color: #d98880;
+  font-family: "Fredoka One", cursive;
+}
+
+.example-showcase {
+  cursor: pointer;
+  color: #409eff;
+  display: flex;
+  align-items: center;
   font-family: "Fredoka One", cursive;
 }
 .footer {
