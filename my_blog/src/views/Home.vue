@@ -8,8 +8,7 @@
           <h3>こんにちは~</h3>
         </div>
       </div>
-
-      <el-divider class="nav-divider"/>
+      <el-divider class="nav-divider" />
       <div class="navigation-bar">
         <a href="" class="nav-text">HOME</a>
         <div>
@@ -83,7 +82,7 @@
         </div>
         <a href="" class="nav-text">ABOUT ME</a>
       </div>
-      <el-divider class="nav-divider"/>
+      <el-divider class="nav-divider" />
       <!-- main -->
       <div class="home-main-box">
         <div class="main-left">
@@ -102,9 +101,9 @@
                 <el-icon><Calendar /></el-icon>
                 2022-06-19
               </div>
-                <el-icon size="small" class="art-del-btn">
-                  <Delete />
-                </el-icon>
+              <el-icon size="small" class="art-del-btn">
+                <Delete />
+              </el-icon>
             </div>
           </div>
           <div class="article-content">
@@ -122,9 +121,9 @@
                 <el-icon><Calendar /></el-icon>
                 2022-06-19
               </div>
-                <el-icon size="small" class="art-del-btn">
-                  <Delete />
-                </el-icon>
+              <el-icon size="small" class="art-del-btn">
+                <Delete />
+              </el-icon>
             </div>
           </div>
           <div class="article-content">
@@ -142,9 +141,9 @@
                 <el-icon><Calendar /></el-icon>
                 2022-06-19
               </div>
-                <el-icon size="small" class="art-del-btn">
-                  <Delete />
-                </el-icon>
+              <el-icon size="small" class="art-del-btn">
+                <Delete />
+              </el-icon>
             </div>
           </div>
           <div class="article-content">
@@ -162,34 +161,34 @@
                 <el-icon><Calendar /></el-icon>
                 2022-06-19
               </div>
-                <el-icon size="small" class="art-del-btn">
-                  <Delete />
-                </el-icon>
+              <el-icon size="small" class="art-del-btn">
+                <Delete />
+              </el-icon>
             </div>
           </div>
-
         </div>
         <div class="main-right">
           <div class="right-box0">
-            <el-button round @click="addBlogForm = true" color="#F9E79F " size="large">
+            <el-button
+              round
+              @click="addBlogForm = true"
+              color="#F9E79F "
+              size="large"
+            >
               <el-icon style="vertical-align: middle">
                 <Edit />
               </el-icon>
               <span style="vertical-align: middle"> New Blog </span>
             </el-button>
           </div>
-        
+
           <div class="right-box1">
             <span class="Title-tag">FOLLOW ME</span>
             <div class="contact-links">
               <a href="" target="_blank" class="contact-details">
                 <i class="fa fa-instagram" id="contact-icon"></i>Instagram</a
               >
-              <a
-                href=""
-                target="_blank"
-                class="contact-details"
-              >
+              <a href="" target="_blank" class="contact-details">
                 <i class="fa fa-github" id="contact-icon"></i>Github</a
               >
               <a href="" target="_blank" class="contact-details">
@@ -203,20 +202,30 @@
           <div class="right-box2">
             <span class="Title-tag">Tags</span>
             <div class="tag-box">
-              <el-button class="tag-item" round v-for="tag in tags"
-              :key="tag"
-              color="#FCF3CF">{{tag}}</el-button>
+              <el-button
+                class="tag-item"
+                round
+                v-for="tag in tags"
+                :key="tag"
+                color="#FCF3CF"
+                >{{ tag }}</el-button
+              >
             </div>
           </div>
         </div>
       </div>
       <!-- footer -->
-      <div class="footer">
+      <!-- <div class="footer">
         <el-divider class="footer-divider"/>
         <p>MIT Licensed | Copyright &copy; Nicole, 2022 ~ present</p>
-      </div>
-  </div>
+      </div> -->
     </div>
+    <!-- footer -->
+    <div class="footer">
+      <!-- <el-divider class="footer-divider" /> -->
+      <p>MIT Licensed | Copyright &copy; Nicole, 2022 ~ present</p>
+    </div>
+  </div>
 
   <!-- add blog dialog -->
   <el-dialog v-model="addBlogForm" title="Write a new blog">
@@ -225,7 +234,11 @@
         <el-input v-model="blogForm.title" autocomplete="off" />
       </el-form-item>
       <el-form-item label="Blog Content" :label-width="formLabelWidth">
-        <el-input v-model="blogForm.content" autocomplete="off" type="textarea"/>
+        <el-input
+          v-model="blogForm.content"
+          autocomplete="off"
+          type="textarea"
+        />
       </el-form-item>
     </el-form>
     <template #footer>
@@ -246,21 +259,41 @@ import {
   ArrowRight,
   ArrowDown,
 } from "@element-plus/icons-vue";
-import { reactive, ref } from 'vue'
+import { reactive, ref } from "vue";
 
 // dialog
-const addBlogForm = ref(false)
-const formLabelWidth = '140px'
+const addBlogForm = ref(false);
+const formLabelWidth = "140px";
 
 const blogForm = reactive({
-  title: '',
-  content: ''
-})
+  title: "",
+  content: "",
+});
 
 // tags
-const tags = ["Java", "Css", "Html", "JavaScript", "Freelance", "Japanese","English",
-"Books", "Movies", "Food", "Cookding","Job","Bank","Relationship","Diary","Gym","Health",
-"Shopping","Fashion","Coupon","Bank"];
+const tags = [
+  "Java",
+  "Css",
+  "Html",
+  "JavaScript",
+  "Freelance",
+  "Japanese",
+  "English",
+  "Books",
+  "Movies",
+  "Food",
+  "Cookding",
+  "Job",
+  "Bank",
+  "Relationship",
+  "Diary",
+  "Gym",
+  "Health",
+  "Shopping",
+  "Fashion",
+  "Coupon",
+  "Bank",
+];
 </script>
 
 <style lang="scss">
@@ -270,13 +303,13 @@ const tags = ["Java", "Css", "Html", "JavaScript", "Freelance", "Japanese","Engl
   height: calc(100vh);
 }
 h1 {
-  font-family: 'Ma Shan Zheng', cursive;
+  font-family: "Ma Shan Zheng", cursive;
   margin: 10px 0 0 0;
-  color:#F7A4A4;
+  color: #f7a4a4;
   font-size: 40px;
 }
 h3 {
-  color: #FEBE8C;
+  color: #febe8c;
 }
 .home-body-box {
   margin: 0 100px;
@@ -290,8 +323,8 @@ h3 {
 }
 .nav-text {
   text-decoration: none;
-  color: #16A085 ;
-  font-family: 'Fredoka One', cursive;
+  color: #d98880;
+  font-family: "Fredoka One", cursive;
 }
 
 // .example-showcase .el-dropdown-link {
@@ -307,6 +340,8 @@ h3 {
   color: #f1948a;
   width: 100%;
   padding-bottom: 15px;
+  margin-top: 15px;
+  background-color: #fffcf6;
 }
 
 .header-bar-item {
@@ -324,7 +359,7 @@ h3 {
   margin: 12px 0;
 }
 .article-content {
-  border: 1px dashed #B6E2A1;
+  border: 1px dashed #b6e2a1;
   margin: 5px 0;
   border-radius: 5px;
   display: flex;
@@ -345,18 +380,18 @@ h3 {
 }
 .art-del-btn {
   margin-right: 12px;
-  color: #5F6A6A;
+  color: #5f6a6a;
 }
 .main-left {
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 85%;
 }
 .main-right {
   display: flex;
   flex-direction: column;
   padding: 20px 0 0 20px;
-  width: 250px;
+  width: 280px;
   margin-left: 10px;
 }
 .right-box0 {
@@ -394,6 +429,7 @@ h3 {
   margin: 0 20px 20px 0;
   text-decoration: none;
   font-size: 18px;
+  color: #16A085;
 }
 #contact-icon {
   margin-right: 5px;
