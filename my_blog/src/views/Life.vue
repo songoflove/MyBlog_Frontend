@@ -5,6 +5,7 @@
       <!-- main -->
       <div class="home-main-box">
         <div class="main-left">
+          <p class="cat-title">Category: Life</p>
           <div class="article-content">
             <div class="article-header">Article 1 Header</div>
             <el-divider class="article-divider" />
@@ -155,6 +156,12 @@ import Header from "../components/Header.vue"
   flex-direction: column;
   padding: 10px;
 }
+.cat-title {
+  font-family: "Fredoka One", cursive;
+  color:#16a085;
+  margin-bottom: 10px;
+  font-size: 20px;
+}
 .article-item {
   display: flex;
   justify-content: space-between;
@@ -186,6 +193,11 @@ import Header from "../components/Header.vue"
 .right-box1 {
   display: flex;
   flex-direction: column;
+}
+.Title-tag {
+  font-size: 20px;
+  font-family: 'Caveat', cursive;
+  font-weight: 500;
 }
 .avatar {
   width: 120px;
