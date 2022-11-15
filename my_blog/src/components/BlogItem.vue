@@ -1,91 +1,102 @@
 <template>
-    <div class="blog-item">
-      <div class="article-header">Article1 Title</div>
-        <el-divider class="article-divider" />
-        <div class="article-item">
-            <div>Summary Summary Summary</div>
-            <el-button text
-            >Read more
-            <el-icon><ArrowRight /></el-icon>
-            </el-button>
-        </div>
-        <div class="icon-item">
-            <div class="article-icon">
-                <el-icon><Calendar /></el-icon>
-                <span class="icon-text">2022-11-14</span>
-            </div>
-            <div class="article-icon">
-                <el-icon><Collection /></el-icon>
-                <span class="icon-text">Life</span>
-            </div>
-        </div>
+  <div class="blog-item">
+    <router-link to="/blogDetails">
+        <div class="article-header">Article1 Title</div>
+    </router-link>
+    <el-divider class="article-divider" />
+    <div class="article-item">
+      <div>Summary Summary Summary</div>
+      <router-link to="/blogDetails">
+        <el-button text
+        >Read more
+        <el-icon><ArrowRight /></el-icon>
+      </el-button>
+      </router-link>
+
     </div>
-    <div class="blog-item">
-      <div class="article-header">Article2 Title</div>
-        <el-divider class="article-divider" />
-        <div class="article-item">
-            <div>Summary Summary Summary</div>
-            <el-button text
-            >Read more
-            <el-icon><ArrowRight /></el-icon>
-            </el-button>
-        </div>
-        <div class="icon-item">
-            <div class="article-icon">
-                <el-icon><Calendar /></el-icon>
-                <span class="icon-text">2022-11-12</span>
-            </div>
-            <div class="article-icon">
-                <el-icon><Collection /></el-icon>
-                <span class="icon-text">travel</span>
-            </div>
-        </div>
+    <div class="icon-item">
+      <div class="article-icon">
+        <el-icon><Calendar /></el-icon>
+        <span class="icon-text">2022-11-14</span>
+      </div>
+      <div class="article-icon">
+        <el-icon><Collection /></el-icon>
+        <span class="icon-text">Life</span>
+      </div>
     </div>
-    <div class="blog-item">
-      <div class="article-header">Article3 Title</div>
-        <el-divider class="article-divider" />
-        <div class="article-item">
-            <div>Summary Summary Summary</div>
-            <el-button text
-            >Read more
-            <el-icon><ArrowRight /></el-icon>
-            </el-button>
-        </div>
-        <div class="icon-item">
-            <div class="article-icon">
-                <el-icon><Calendar /></el-icon>
-                <span class="icon-text">2022-11-09</span>
-            </div>
-            <div class="article-icon">
-                <el-icon><Collection /></el-icon>
-                <span class="icon-text">study</span>
-            </div>
-        </div>
+  </div>
+  <div class="blog-item">
+    <router-link to="/blogDetails">
+        <div class="article-header">Article2 Title</div>
+    </router-link>
+    <el-divider class="article-divider" />
+    <div class="article-item">
+      <div>Summary Summary Summary</div>
+      <el-button text
+        >Read more
+        <el-icon><ArrowRight /></el-icon>
+      </el-button>
     </div>
-    <div class="blog-item">
-      <div class="article-header">Article4 Title</div>
-        <el-divider class="article-divider" />
-        <div class="article-item">
-            <div>Summary Summary Summary</div>
-            <el-button text
-            >Read more
-            <el-icon><ArrowRight /></el-icon>
-            </el-button>
-        </div>
-        <div class="icon-item">
-            <div class="article-icon">
-                <el-icon><Calendar /></el-icon>
-                <span class="icon-text">2022-11-01</span>
-            </div>
-            <div class="article-icon">
-                <el-icon><Collection /></el-icon>
-                <span class="icon-text">work</span>
-            </div>
-        </div>
+    <div class="icon-item">
+      <div class="article-icon">
+        <el-icon><Calendar /></el-icon>
+        <span class="icon-text">2022-11-12</span>
+      </div>
+      <div class="article-icon">
+        <el-icon><Collection /></el-icon>
+        <span class="icon-text">travel</span>
+      </div>
     </div>
+  </div>
+  <div class="blog-item">
+    <router-link to="/blogDetails">
+        <div class="article-header">Article3 Title</div>
+    </router-link>
+    <el-divider class="article-divider" />
+    <div class="article-item">
+      <div>Summary Summary Summary</div>
+      <el-button text
+        >Read more
+        <el-icon><ArrowRight /></el-icon>
+      </el-button>
+    </div>
+    <div class="icon-item">
+      <div class="article-icon">
+        <el-icon><Calendar /></el-icon>
+        <span class="icon-text">2022-11-09</span>
+      </div>
+      <div class="article-icon">
+        <el-icon><Collection /></el-icon>
+        <span class="icon-text">study</span>
+      </div>
+    </div>
+  </div>
+  <div class="blog-item">
+    <router-link to="/blogDetails">
+        <div class="article-header">Article4 Title</div>
+    </router-link>
+    <el-divider class="article-divider" />
+    <div class="article-item">
+      <div>Summary Summary Summary</div>
+      <el-button text
+        >Read more
+        <el-icon><ArrowRight /></el-icon>
+      </el-button>
+    </div>
+    <div class="icon-item">
+      <div class="article-icon">
+        <el-icon><Calendar /></el-icon>
+        <span class="icon-text">2022-11-01</span>
+      </div>
+      <div class="article-icon">
+        <el-icon><Collection /></el-icon>
+        <span class="icon-text">work</span>
+      </div>
+    </div>
+  </div>
 </template>
 <script setup>
-import {Calendar, ArrowRight, Collection } from "@element-plus/icons-vue";
+import { Calendar, ArrowRight, Collection } from "@element-plus/icons-vue";
 
 // import { getCurrentInstance } from 'vue';
 // const {proxy} = getCurrentInstance()
@@ -127,15 +138,15 @@ import {Calendar, ArrowRight, Collection } from "@element-plus/icons-vue";
   margin: 12px 0;
 }
 .article-icon {
-    display: flex;
-    align-items: center;
-    margin-right: 20px;
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
 }
 .icon-text {
-    margin-left: 5px;
+  margin-left: 5px;
 }
 .icon-item {
-    display: flex;
-    justify-content:flex-start;
+  display: flex;
+  justify-content: flex-start;
 }
 </style>

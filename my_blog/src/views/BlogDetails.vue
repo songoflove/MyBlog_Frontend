@@ -5,85 +5,34 @@
       <!-- main -->
       <div class="home-main-box">
         <div class="main-left">
-          <p class="cat-title">Category: Life</p>
           <div class="article-content">
-            <div class="article-header">Article 1 Header</div>
+            <div class="article-header">Article1 Title</div>
             <el-divider class="article-divider" />
             <div class="article-item">
-              <div>Article contenxxxxxxxxxxxxxxxt</div>
-              <el-button text
-                >Read more
-                <el-icon><ArrowRight /></el-icon>
-              </el-button>
+                <span>This is article 1.This is article 1.This is article 1. This is article 1.This is article 1.This is article 1.  This is article 1.This is article 1.This is article 1.This is article 1.  This is article 1.This is article 1.</span><br>
+                
             </div>
-            <div class="article-item">
-              <div>
-                <el-icon><Calendar /></el-icon>
-                2022-06-19
+            <div class="icon-item">
+              <div class="icon-item-box">
+                <div class="article-icon">
+                  <el-icon><Calendar /></el-icon>
+                  <span class="icon-text">2022-11-14</span>
+                </div>
+                <div class="article-icon">
+                  <el-icon><Collection /></el-icon>
+                  <span class="icon-text">Life</span>
+                </div>
               </div>
-              <el-icon size="small" class="art-del-btn">
-                <Delete />
-              </el-icon>
-            </div>
-          </div>
-          <div class="article-content">
-            <div class="article-header">Article 2 Header</div>
-            <el-divider class="article-divider" />
-            <div class="article-item">
-              <div>Article contenxxxxxxxxxxxxxxxt</div>
-              <el-button text
-                >Read more
-                <el-icon><ArrowRight /></el-icon>
-              </el-button>
-            </div>
-            <div class="article-item">
-              <div>
-                <el-icon><Calendar /></el-icon>
-                2022-06-19
+              <div class="icon-item-box">
+                <div class="article-icon">
+                    <router-link to="/edit">
+                        <el-button type="success" text>Edit</el-button>
+                    </router-link>
+                </div>
+                <div class="article-icon">
+                    <el-button type="info" text>Delete</el-button>
+                </div>
               </div>
-              <el-icon size="small" class="art-del-btn">
-                <Delete />
-              </el-icon>
-            </div>
-          </div>
-          <div class="article-content">
-            <div class="article-header">Article 3 Header</div>
-            <el-divider class="article-divider" />
-            <div class="article-item">
-              <div>Article contenxxxxxxxxxxxxxxxt</div>
-              <el-button text
-                >Read more
-                <el-icon><ArrowRight /></el-icon>
-              </el-button>
-            </div>
-            <div class="article-item">
-              <div>
-                <el-icon><Calendar /></el-icon>
-                2022-06-19
-              </div>
-              <el-icon size="small" class="art-del-btn">
-                <Delete />
-              </el-icon>
-            </div>
-          </div>
-          <div class="article-content">
-            <div class="article-header">Article 4 Header</div>
-            <el-divider class="article-divider" />
-            <div class="article-item">
-              <div>Article contenxxxxxxxxxxxxxxxt</div>
-              <el-button text
-                >Read more
-                <el-icon><ArrowRight /></el-icon>
-              </el-button>
-            </div>
-            <div class="article-item">
-              <div>
-                <el-icon><Calendar /></el-icon>
-                2022-06-19
-              </div>
-              <el-icon size="small" class="art-del-btn">
-                <Delete />
-              </el-icon>
             </div>
           </div>
         </div>
@@ -115,16 +64,13 @@
       <p>MIT Licensed | Copyright &copy; Nicole, 2022 ~ present</p>
     </div>
   </div>
+    <!-- Editor area -->
+    <!-- <Editor></Editor> -->
 
 </template>
 
 <script setup>
-import {
-  Delete,
-  Calendar,
-  ArrowRight,
-} from "@element-plus/icons-vue";
-
+import { Calendar } from "@element-plus/icons-vue";
 </script>
 
 <style lang="scss">
@@ -147,6 +93,8 @@ import {
   margin-top: 15px;
   background-color: #fffcf6;
 }
+
+// main-box-left
 .article-content {
   border: 1px dashed #b6e2a1;
   margin: 5px 0;
@@ -157,13 +105,11 @@ import {
 }
 .cat-title {
   font-family: "Fredoka One", cursive;
-  color:#16a085;
+  color: #16a085;
   margin-bottom: 10px;
   font-size: 20px;
 }
 .article-item {
-  display: flex;
-  justify-content: space-between;
   margin-top: 10px;
 }
 .article-header {
@@ -173,15 +119,29 @@ import {
 .article-divider {
   margin: 12px 0;
 }
-.art-del-btn {
-  margin-right: 12px;
-  color: #5f6a6a;
-}
 .main-left {
   display: flex;
   flex-direction: column;
   width: 85%;
 }
+.article-icon {
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+}
+.icon-text {
+  margin-left: 5px;
+}
+.icon-item {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+.icon-item-box {
+    display: flex;
+    align-items: center;
+}
+// main-box-right
 .main-right {
   display: flex;
   flex-direction: column;
@@ -195,7 +155,7 @@ import {
 }
 .Title-tag {
   font-size: 20px;
-  font-family: 'Caveat', cursive;
+  font-family: "Caveat", cursive;
   font-weight: 500;
 }
 .avatar {
@@ -223,5 +183,4 @@ import {
 #contact-icon {
   margin-right: 5px;
 }
-
 </style>

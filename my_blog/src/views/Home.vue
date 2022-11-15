@@ -16,7 +16,8 @@
         </div>
         <div class="main-right">
           <div class="right-box0">
-            <el-button
+            <router-link to="/add">
+              <el-button
               round
               @click="addBlogForm = true"
               color="#F9E79F "
@@ -27,6 +28,8 @@
               </el-icon>
               <span style="vertical-align: middle"> New Blog </span>
             </el-button>
+            </router-link>
+
           </div>
 
           <div class="right-box1">
@@ -70,35 +73,10 @@
     </div>
   </div>
 
-  <!-- add blog dialog -->
-  <el-dialog v-model="addBlogForm" title="Write a new blog">
-    <el-form :model="blogForm">
-      <el-form-item label="Blog Title" :label-width="formLabelWidth">
-        <el-input v-model="blogForm.title" autocomplete="off" />
-      </el-form-item>
-      <el-form-item label="Blog Content" :label-width="formLabelWidth">
-        <el-input
-          v-model="blogForm.content"
-          autocomplete="off"
-          type="textarea"
-        />
-      </el-form-item>
-    </el-form>
-    <template #footer>
-      <span class="dialog-footer">
-        <el-button @click="addBlogForm = false">Cancel</el-button>
-        <el-button type="primary" @click="addBlogForm = false">
-          Post
-        </el-button>
-      </span>
-    </template>
-  </el-dialog>
 </template>
 
 <script setup>
 import { reactive, ref, getCurrentInstance } from "vue";
-import Header from "../components/Header.vue";
-import BlogItem from "../components/BlogItem.vue";
 
 // const {proxy} = getCurrentInstance()
 
@@ -107,14 +85,6 @@ import BlogItem from "../components/BlogItem.vue";
 // blogList = [{"id":1,"title":"Article 1","summary":"Summary of article 1",
 // "time":"2022-11-01","categoryName":"Life"}]
 
-// dialog
-const addBlogForm = ref(false);
-const formLabelWidth = "140px";
-
-const blogForm = reactive({
-  title: "",
-  content: "",
-});
 
 // tags
 const tags = [

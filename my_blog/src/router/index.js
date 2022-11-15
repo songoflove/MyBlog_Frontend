@@ -26,6 +26,21 @@ const routes = [
         path: '/life',
         component: () => import('../views/Life.vue'),
     },
+    {
+        name: 'blogDetails',
+        path: '/blogDetails',
+        component: () => import('../views/BlogDetails.vue'),
+    },
+    {
+        name: 'edit',
+        path: '/edit',
+        component: () => import('../views/EditBlog.vue'),
+    },
+    {
+        name: 'add',
+        path: '/add',
+        component: () => import('../views/AddBlog.vue'),
+    },
 ];
 
 const router = createRouter({
