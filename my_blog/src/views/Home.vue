@@ -6,86 +6,13 @@
       <!-- main -->
       <div class="home-main-box">
         <div class="main-left">
-          <div class="article-content">
-            <div class="article-header">Article 1 Header</div>
-            <el-divider class="article-divider" />
-            <div class="article-item">
-              <div>Article contenxxxxxxxxxxxxxxxt</div>
-              <el-button text
-                >Read more
-                <el-icon><ArrowRight /></el-icon>
-              </el-button>
-            </div>
-            <div class="article-item">
-              <div>
-                <el-icon><Calendar /></el-icon>
-                2022-06-19
-              </div>
-              <el-icon size="small" class="art-del-btn">
-                <Delete />
-              </el-icon>
-            </div>
-          </div>
-          <div class="article-content">
-            <div class="article-header">Article 2 Header</div>
-            <el-divider class="article-divider" />
-            <div class="article-item">
-              <div>Article contenxxxxxxxxxxxxxxxt</div>
-              <el-button text
-                >Read more
-                <el-icon><ArrowRight /></el-icon>
-              </el-button>
-            </div>
-            <div class="article-item">
-              <div>
-                <el-icon><Calendar /></el-icon>
-                2022-06-19
-              </div>
-              <el-icon size="small" class="art-del-btn">
-                <Delete />
-              </el-icon>
-            </div>
-          </div>
-          <div class="article-content">
-            <div class="article-header">Article 3 Header</div>
-            <el-divider class="article-divider" />
-            <div class="article-item">
-              <div>Article contenxxxxxxxxxxxxxxxt</div>
-              <el-button text
-                >Read more
-                <el-icon><ArrowRight /></el-icon>
-              </el-button>
-            </div>
-            <div class="article-item">
-              <div>
-                <el-icon><Calendar /></el-icon>
-                2022-06-19
-              </div>
-              <el-icon size="small" class="art-del-btn">
-                <Delete />
-              </el-icon>
-            </div>
-          </div>
-          <div class="article-content">
-            <div class="article-header">Article 4 Header</div>
-            <el-divider class="article-divider" />
-            <div class="article-item">
-              <div>Article contenxxxxxxxxxxxxxxxt</div>
-              <el-button text
-                >Read more
-                <el-icon><ArrowRight /></el-icon>
-              </el-button>
-            </div>
-            <div class="article-item">
-              <div>
-                <el-icon><Calendar /></el-icon>
-                2022-06-19
-              </div>
-              <el-icon size="small" class="art-del-btn">
-                <Delete />
-              </el-icon>
-            </div>
-          </div>
+          <BlogItem></BlogItem>
+          <!-- <div v-for="blog in blogList">
+            <BlogItem :title="blog.title"
+                      :summary="blog.summary"
+                      :time="blog.time"
+                      :categoryName="blog.categoryName"></BlogItem>
+          </div> -->
         </div>
         <div class="main-right">
           <div class="right-box0">
@@ -169,14 +96,16 @@
 </template>
 
 <script setup>
-import {
-  Delete,
-  Calendar,
-  ArrowRight,
-} from "@element-plus/icons-vue";
-import { reactive, ref } from "vue";
-import Header from "../components/Header.vue"
+import { reactive, ref, getCurrentInstance } from "vue";
+import Header from "../components/Header.vue";
+import BlogItem from "../components/BlogItem.vue";
 
+// const {proxy} = getCurrentInstance()
+
+// blog article
+// const blogList = ref([])
+// blogList = [{"id":1,"title":"Article 1","summary":"Summary of article 1",
+// "time":"2022-11-01","categoryName":"Life"}]
 
 // dialog
 const addBlogForm = ref(false);
@@ -235,33 +164,30 @@ const tags = [
   background-color: #fffcf6;
 }
 
-.article-content {
-  border: 1px dashed #b6e2a1;
-  margin: 5px 0;
-  border-radius: 5px;
-  display: flex;
-  flex-direction: column;
-  padding: 10px;
-}
-.article-item {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 10px;
-}
-.article-header {
-  font-size: 22px;
-  font-weight: bold;
-}
-.article-divider {
-  margin: 12px 0;
-}
-.art-del-btn {
-  margin-right: 12px;
-  color: #5f6a6a;
-}
+// .article-content {
+//   border: 1px dashed #b6e2a1;
+//   margin: 5px 0;
+//   border-radius: 5px;
+//   display: flex;
+//   flex-direction: column;
+//   padding: 10px;
+// }
+// .article-item {
+//   display: flex;
+//   justify-content: space-between;
+//   margin-top: 10px;
+// }
+// .article-header {
+//   font-size: 22px;
+//   font-weight: bold;
+// }
+// .article-divider {
+//   margin: 12px 0;
+// }
 .main-left {
   display: flex;
   flex-direction: column;
+  // display: 1;
   width: 85%;
 }
 .main-right {
