@@ -6,8 +6,12 @@
       <div class="home-main-box">
         <div class="main-left">
           <div class="form-content">
-            <el-form :model="editForm" label-width="120px" 
-            :rules="blogRules" ref="editFormRef">
+            <el-form
+              :model="editForm"
+              label-width="120px"
+              :rules="blogRules"
+              ref="editFormRef"
+            >
               <el-form-item label="Title" prop="title">
                 <el-input v-model="editForm.title" />
               </el-form-item>
@@ -24,7 +28,6 @@
                 <el-button type="primary" @click="onSubmit">Done</el-button>
                 <el-button>Cancel</el-button>
               </el-form-item>
-
             </el-form>
           </div>
         </div>
@@ -62,51 +65,57 @@
 
 <script setup>
 import { Calendar } from "@element-plus/icons-vue";
-import { ref, reactive } from 'vue'
+import { ref, reactive } from "vue";
 
 const editForm = reactive({
-  title: 'Article1 Title',
-  summary: 'This is article 1.',
-  content: 'This is article 1.This is article 1.This is article 1. This is article 1.This is article 1.This is article 1.  This is article 1.This is article 1.',
-  categoryName: 'Life'
-})
+  title: "Article1 Title",
+  summary: "This is article 1.",
+  content:
+    "This is article 1.This is article 1.This is article 1. This is article 1.This is article 1.This is article 1.  This is article 1.This is article 1.",
+  categoryName: "Life",
+});
 
 const onSubmit = () => {
-  console.log('submit!')
-}
+  console.log("submit!");
+};
 
 const blogRules = reactive({
   title: [
     { required: true, message: "Please input title" },
-     { min: 1, max: 30, message: 'Length should be 1 to 30', trigger: 'blur' },
+    { min: 1, max: 30, message: "Length should be 1 to 30", trigger: "blur" },
   ],
   summary: [
     {
       required: true,
       message: "Please input summary",
     },
-     { min: 10, max: 200, message: 'Length should be 6 to 200', trigger: 'blur' },
+    {
+      min: 10,
+      max: 200,
+      message: "Length should be 6 to 200",
+      trigger: "blur",
+    },
   ],
   content: [
     {
       required: true,
       message: "Please input content",
     },
-     { min: 10, message: 'Length should be over 10', trigger: 'blur' },
+    { min: 10, message: "Length should be over 10", trigger: "blur" },
   ],
 });
-
 </script>
 
 <style lang="scss">
 .home-body {
   background-color: #fffcf6;
   width: 100%;
-  height: 100%;
+  min-height: 100%;
 }
 
 .home-body-box {
   margin: 0 100px;
+  min-height: 100%;
 }
 .footer {
   font-size: 14px;
@@ -114,8 +123,9 @@ const blogRules = reactive({
   text-align: center;
   color: #f1948a;
   width: 100%;
+  height: 60px;
   padding-bottom: 15px;
-  margin-top: 15px;
+    margin-top: 15px;
   background-color: #fffcf6;
 }
 

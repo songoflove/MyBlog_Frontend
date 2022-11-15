@@ -9,8 +9,12 @@
             <div class="article-header">Article1 Title</div>
             <el-divider class="article-divider" />
             <div class="article-item">
-                <span>This is article 1.This is article 1.This is article 1. This is article 1.This is article 1.This is article 1.  This is article 1.This is article 1.This is article 1.This is article 1.  This is article 1.This is article 1.</span><br>
-                
+              <span
+                >This is article 1.This is article 1.This is article 1. This is
+                article 1.This is article 1.This is article 1. This is article
+                1.This is article 1.This is article 1.This is article 1. This is
+                article 1.This is article 1.</span
+              ><br />
             </div>
             <div class="icon-item">
               <div class="icon-item-box">
@@ -25,12 +29,12 @@
               </div>
               <div class="icon-item-box">
                 <div class="article-icon">
-                    <router-link to="/edit">
-                        <el-button type="success" text>Edit</el-button>
-                    </router-link>
+                  <router-link to="/edit">
+                    <el-button type="success" text>Edit</el-button>
+                  </router-link>
                 </div>
                 <div class="article-icon">
-                    <el-button type="info" text>Delete</el-button>
+                  <el-button type="info" text>Delete</el-button>
                 </div>
               </div>
             </div>
@@ -64,9 +68,8 @@
       <p>MIT Licensed | Copyright &copy; Nicole, 2022 ~ present</p>
     </div>
   </div>
-    <!-- Editor area -->
-    <!-- <Editor></Editor> -->
-
+  <!-- Editor area -->
+  <!-- <Editor></Editor> -->
 </template>
 
 <script setup>
@@ -75,14 +78,17 @@ import { Calendar } from "@element-plus/icons-vue";
 
 <style lang="scss">
 .home-body {
+  position: relative;
   background-color: #fffcf6;
   width: 100%;
-  height: 100%;
+  min-height: 100%;
 }
 
 .home-body-box {
   margin: 0 100px;
+  min-height: 100%;
 }
+
 .footer {
   font-size: 14px;
   bottom: 0;
@@ -138,8 +144,8 @@ import { Calendar } from "@element-plus/icons-vue";
   margin-top: 15px;
 }
 .icon-item-box {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 // main-box-right
 .main-right {

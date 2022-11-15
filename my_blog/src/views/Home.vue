@@ -18,18 +18,17 @@
           <div class="right-box0">
             <router-link to="/add">
               <el-button
-              round
-              @click="addBlogForm = true"
-              color="#F9E79F "
-              size="large"
-            >
-              <el-icon style="vertical-align: middle">
-                <Edit />
-              </el-icon>
-              <span style="vertical-align: middle"> New Blog </span>
-            </el-button>
+                round
+                @click="addBlogForm = true"
+                color="#F9E79F "
+                size="large"
+              >
+                <el-icon style="vertical-align: middle">
+                  <Edit />
+                </el-icon>
+                <span style="vertical-align: middle"> New Blog </span>
+              </el-button>
             </router-link>
-
           </div>
 
           <div class="right-box1">
@@ -72,7 +71,6 @@
       <p>MIT Licensed | Copyright &copy; Nicole, 2022 ~ present</p>
     </div>
   </div>
-
 </template>
 
 <script setup>
@@ -84,7 +82,6 @@ import { reactive, ref, getCurrentInstance } from "vue";
 // const blogList = ref([])
 // blogList = [{"id":1,"title":"Article 1","summary":"Summary of article 1",
 // "time":"2022-11-01","categoryName":"Life"}]
-
 
 // tags
 const tags = [
@@ -116,11 +113,12 @@ const tags = [
 .home-body {
   background-color: #fffcf6;
   width: 100%;
-  height: 100%;
+  min-height: 100%;
 }
 
 .home-body-box {
   margin: 0 100px;
+  min-height: 100%;
 }
 
 .footer {
@@ -129,31 +127,12 @@ const tags = [
   text-align: center;
   color: #f1948a;
   width: 100%;
+  height: 60px;
   padding-bottom: 15px;
   margin-top: 15px;
   background-color: #fffcf6;
 }
 
-// .article-content {
-//   border: 1px dashed #b6e2a1;
-//   margin: 5px 0;
-//   border-radius: 5px;
-//   display: flex;
-//   flex-direction: column;
-//   padding: 10px;
-// }
-// .article-item {
-//   display: flex;
-//   justify-content: space-between;
-//   margin-top: 10px;
-// }
-// .article-header {
-//   font-size: 22px;
-//   font-weight: bold;
-// }
-// .article-divider {
-//   margin: 12px 0;
-// }
 .main-left {
   display: flex;
   flex-direction: column;

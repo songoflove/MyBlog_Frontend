@@ -115,27 +115,22 @@
       <p>MIT Licensed | Copyright &copy; Nicole, 2022 ~ present</p>
     </div>
   </div>
-
 </template>
 
 <script setup>
-import {
-  Delete,
-  Calendar,
-  ArrowRight,
-} from "@element-plus/icons-vue";
-
+import { Delete, Calendar, ArrowRight } from "@element-plus/icons-vue";
 </script>
 
 <style lang="scss">
 .home-body {
   background-color: #fffcf6;
   width: 100%;
-  height: 100%;
+  min-height: 100%;
 }
 
 .home-body-box {
   margin: 0 100px;
+  min-height: 100%;
 }
 .footer {
   font-size: 14px;
@@ -143,6 +138,7 @@ import {
   text-align: center;
   color: #f1948a;
   width: 100%;
+  height: 60px;
   padding-bottom: 15px;
   margin-top: 15px;
   background-color: #fffcf6;
@@ -157,7 +153,7 @@ import {
 }
 .cat-title {
   font-family: "Fredoka One", cursive;
-  color:#16a085;
+  color: #16a085;
   margin-bottom: 10px;
   font-size: 20px;
 }
@@ -195,7 +191,7 @@ import {
 }
 .Title-tag {
   font-size: 20px;
-  font-family: 'Caveat', cursive;
+  font-family: "Caveat", cursive;
   font-weight: 500;
 }
 .avatar {
@@ -223,5 +219,4 @@ import {
 #contact-icon {
   margin-right: 5px;
 }
-
 </style>
