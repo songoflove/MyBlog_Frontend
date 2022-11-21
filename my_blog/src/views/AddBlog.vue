@@ -7,22 +7,22 @@
         <div class="main-left">
           <div class="article-content">
             <el-form
-              :model="editForm"
+              :model="addForm"
               label-width="120px"
               :rules="blogRules"
-              ref="editFormRef"
+              ref="addFormRef"
             >
               <el-form-item label="Title" prop="title">
-                <el-input v-model="editForm.title" />
+                <el-input v-model="addForm.title" />
               </el-form-item>
               <el-form-item label="Summary" prop="summary">
-                <el-input v-model="editForm.summary" type="textarea" />
+                <el-input v-model="addForm.summary" type="textarea" />
               </el-form-item>
               <el-form-item label="Content" prop="content">
-                <el-input v-model="editForm.content" type="textarea" />
+                <el-input v-model="addForm.content" type="textarea" />
               </el-form-item>
               <el-form-item label="Category" prop="categoryName">
-                <el-input v-model="editForm.categoryName" />
+                <el-input v-model="addForm.categoryName" />
               </el-form-item>
               <el-form-item>
                 <el-button type="primary" @click="onSubmit">Done</el-button>
@@ -59,29 +59,27 @@
       <p>MIT Licensed | Copyright &copy; Nicole, 2022 ~ present</p>
     </div>
   </div>
-  <!-- Editor area -->
-  <!-- <Editor></Editor> -->
+  <!-- addor area -->
+  <!-- <addor></addor> -->
 </template>
 
 <script setup>
-import { Calendar } from "@element-plus/icons-vue";
-import { ref, reactive } from "vue";
+import { ref, reactive, getCurrentInstance } from "vue";
+import { useRouter } from 'vue-router'
 
-const editForm = reactive({
-  title: "",
-  summary: "",
-  content: "",
-  categoryName: "",
-});
+const { proxy } = getCurrentInstance();
+const router = useRouter();
+const api = {
+  add: "/articles/add"
+}
 
-const onSubmit = () => {
-  console.log("submit!");
-};
+const addFormRef = ref();
+const addForm = reactive({});
 
 const blogRules = reactive({
   title: [
     { required: true, message: "Please input title" },
-    { min: 1, max: 30, message: "Length should be 1 to 30", trigger: "blur" },
+    { min: 1, max: 50, message: "Length should be 1 to 50", trigger: "blur" },
   ],
   summary: [
     {
@@ -103,6 +101,34 @@ const blogRules = reactive({
     { min: 10, message: "Length should be over 10", trigger: "blur" },
   ],
 });
+
+const onSubmit = () => {
+  addFormRef.value.validate(async (valid) => {
+    if(!valid) {
+      return
+    }
+    let params = {
+      title: addForm.title,
+      summary: addForm.summary,
+      content: addForm.content,
+      categoryName: addForm.categoryName
+    }
+    let result = await proxy.Request({
+      url: api.add,
+      params: params,
+      errorCallback: () => {
+        changeCheckCode();
+      }
+    })
+    if (result.code != 200) {
+      return;
+    }
+    // proxy.message.success("登录成功");
+    setTimeout(() => {
+      router.push("/")
+    }, 1500);
+  })
+};
 </script>
 
 <style lang="scss">

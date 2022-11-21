@@ -16,19 +16,13 @@
         </div>
         <div class="main-right">
           <div class="right-box0">
-            <router-link to="/add">
-              <el-button
-                round
-                @click="addBlogForm = true"
-                color="#F9E79F "
-                size="large"
-              >
-                <el-icon style="vertical-align: middle">
-                  <Edit />
-                </el-icon>
-                <span style="vertical-align: middle"> New Blog </span>
-              </el-button>
-            </router-link>
+            <el-button round color="#F9E79F " size="large" @click="addBlog">
+              <el-icon style="vertical-align: middle">
+                <Edit />
+              </el-icon>
+              <span style="vertical-align: middle"> New Blog </span>
+            </el-button>
+
           </div>
 
           <div class="right-box1">
@@ -75,13 +69,14 @@
 
 <script setup>
 import { reactive, ref, getCurrentInstance } from "vue";
+import { useRouter } from "vue-router";
 
 // const {proxy} = getCurrentInstance()
+const router = useRouter();
+const addBlog = () => {
+  router.push({ path: "/add" });
+};
 
-// blog article
-// const blogList = ref([])
-// blogList = [{"id":1,"title":"Article 1","summary":"Summary of article 1",
-// "time":"2022-11-01","categoryName":"Life"}]
 
 // tags
 const tags = [
