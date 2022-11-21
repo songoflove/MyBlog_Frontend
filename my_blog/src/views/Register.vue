@@ -16,28 +16,32 @@
           <el-input type="password" v-model="RegisterFormData.password" placeholder="Please input your password"/>
         </el-form-item>
         <el-form-item label="Confirm Password" prop="password">
-          <el-input type="password" v-model="RegisterFormData.password" placeholder="Please repeat your password"/>
+          <el-input type="password" v-model="RegisterFormData.sec_password" placeholder="Please repeat your password"/>
         </el-form-item>
         <el-button
           color="#159AC1" 
           class="registerBtn"
-          @click="register(registerFormRef)"
+          @click="register"
           >Register</el-button
         >
-        <div class="info">Already have an account? <a href="/login" style="color:#800080">Login</a></div>
+        <div class="info">Already have an account? <a href="/register" style="color:#800080">Login</a></div>
       </el-form>
     </div>
   </div>
 </template>
 
 <script setup>
-import { reactive, ref } from "vue";
+import { reactive, ref, getCurrentInstance } from "vue";
+import { useRouter } from 'vue-router'
+
+const { proxy } = getCurrentInstance();
+const router = useRouter();
+const api = {
+  register: "/register"
+}
 
 const registerFormRef = ref();
-const RegisterFormData = reactive({
-  username: "",
-  password: "",
-});
+const RegisterFormData = reactive({});
 
 const registerRules = reactive({
   username: [
@@ -51,11 +55,41 @@ const registerRules = reactive({
     },
      { min: 6, max: 24, message: 'Length should be 6 to 28', trigger: 'blur' },
   ],
+  sec_password: [
+    {
+      required: true,
+      message: "Please input your password again",
+    },
+     { min: 6, max: 24, message: 'Length should be 6 to 28', trigger: 'blur' },
+  ],
 });
 
-// const register = () => {
-   
-// };
+const register = () => {
+  registerFormRef.value.validate(async (valid) => {
+    if(!valid) {
+      return
+    }
+    let params = {
+      username: RegisterFormData.username,
+      password: RegisterFormData.password
+    }
+    let result = await proxy.Request({
+      url: api.register,
+      params: params,
+      errorCallback: () => {
+        changeCheckCode();
+      }
+    })
+    console.log(result)
+    if (result.code != 200) {
+      return;
+    }
+    // proxy.message.success("登录成功");
+    setTimeout(() => {
+      router.push("/")
+    }, 1500);
+  })
+};
 </script>
 
 <style lang="scss">

@@ -19,7 +19,7 @@
         <el-button
          color="#159AC1" 
          class="loginBtn"
-          @click="login(loginFormRef)"
+          @click="login"
           >Login</el-button
         >
         <div class="info">Don't have an account? <a href="/register" style="color:#800080">Register</a></div>
@@ -29,13 +29,17 @@
 </template>
 
 <script setup>
-import { reactive, ref } from "vue";
+import { reactive, ref, getCurrentInstance } from "vue";
+import { useRouter } from 'vue-router'
+
+const { proxy } = getCurrentInstance();
+const router = useRouter();
+const api = {
+  login: "/login"
+}
 
 const loginFormRef = ref();
-const LoginFormData = reactive({
-  username: "testUser",
-  password: "123456",
-});
+const LoginFormData = reactive({});
 
 const loginRules = reactive({
   username: [
@@ -47,13 +51,36 @@ const loginRules = reactive({
       required: true,
       message: "Please input your password",
     },
-     { min: 6, max: 24, message: 'Length should be 6 to 28', trigger: 'blur' },
+     { min: 5, max: 24, message: 'Length should be 5 to 28', trigger: 'blur' },
   ],
 });
 
-// const login = () => {
-   
-// };
+const login = () => {
+  loginFormRef.value.validate(async (valid) => {
+    if(!valid) {
+      return
+    }
+    let params = {
+      username: LoginFormData.username,
+      password: LoginFormData.password
+    }
+    let result = await proxy.Request({
+      url: api.login,
+      params: params,
+      errorCallback: () => {
+        changeCheckCode();
+      }
+    })
+    console.log(result)
+    if (result.code != 200) {
+      return;
+    }
+    // proxy.message.success("登录成功");
+    setTimeout(() => {
+      router.push("/")
+    }, 1500);
+  })
+};
 </script>
 
 <style lang="scss">

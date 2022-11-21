@@ -10,6 +10,7 @@ import Header from "./components/Header.vue";
 import BlogItem from "./components/BlogItem.vue";
 import Editor from "./components/Editor.vue";
 
+import Request from './utils/Request'
 
 const app = createApp(App)
 app.use(router)
@@ -17,6 +18,8 @@ app.use(ElementPlus)
 app.component("Header",Header)
 app.component("BlogItem",BlogItem)
 app.component("Editor",Editor)
+
+app.config.globalProperties.Request = Request
 
 app.mount('#app')
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
