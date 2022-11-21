@@ -71,7 +71,6 @@ const login = () => {
         changeCheckCode();
       }
     })
-    console.log(result)
     if (result.code != 200) {
       return;
     }

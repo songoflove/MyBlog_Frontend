@@ -1,37 +1,9 @@
 <template>
   <div class="blog-item">
-    <router-link to="/blogDetails">
-        <div class="article-header">Article1 Title</div>
-    </router-link>
+    <div class="article-header">{{ title }}</div>
     <el-divider class="article-divider" />
     <div class="article-item">
-      <div>Summary Summary Summary</div>
-      <router-link to="/blogDetails">
-        <el-button text
-        >Read more
-        <el-icon><ArrowRight /></el-icon>
-      </el-button>
-      </router-link>
-
-    </div>
-    <div class="icon-item">
-      <div class="article-icon">
-        <el-icon><Calendar /></el-icon>
-        <span class="icon-text">2022-11-14</span>
-      </div>
-      <div class="article-icon">
-        <el-icon><Collection /></el-icon>
-        <span class="icon-text">Life</span>
-      </div>
-    </div>
-  </div>
-  <div class="blog-item">
-    <router-link to="/blogDetails">
-        <div class="article-header">Article2 Title</div>
-    </router-link>
-    <el-divider class="article-divider" />
-    <div class="article-item">
-      <div>Summary Summary Summary</div>
+      <div>{{ summary }}</div>
       <el-button text
         >Read more
         <el-icon><ArrowRight /></el-icon>
@@ -40,57 +12,7 @@
     <div class="icon-item">
       <div class="article-icon">
         <el-icon><Calendar /></el-icon>
-        <span class="icon-text">2022-11-12</span>
-      </div>
-      <div class="article-icon">
-        <el-icon><Collection /></el-icon>
-        <span class="icon-text">travel</span>
-      </div>
-    </div>
-  </div>
-  <div class="blog-item">
-    <router-link to="/blogDetails">
-        <div class="article-header">Article3 Title</div>
-    </router-link>
-    <el-divider class="article-divider" />
-    <div class="article-item">
-      <div>Summary Summary Summary</div>
-      <el-button text
-        >Read more
-        <el-icon><ArrowRight /></el-icon>
-      </el-button>
-    </div>
-    <div class="icon-item">
-      <div class="article-icon">
-        <el-icon><Calendar /></el-icon>
-        <span class="icon-text">2022-11-09</span>
-      </div>
-      <div class="article-icon">
-        <el-icon><Collection /></el-icon>
-        <span class="icon-text">study</span>
-      </div>
-    </div>
-  </div>
-  <div class="blog-item">
-    <router-link to="/blogDetails">
-        <div class="article-header">Article4 Title</div>
-    </router-link>
-    <el-divider class="article-divider" />
-    <div class="article-item">
-      <div>Summary Summary Summary</div>
-      <el-button text
-        >Read more
-        <el-icon><ArrowRight /></el-icon>
-      </el-button>
-    </div>
-    <div class="icon-item">
-      <div class="article-icon">
-        <el-icon><Calendar /></el-icon>
-        <span class="icon-text">2022-11-01</span>
-      </div>
-      <div class="article-icon">
-        <el-icon><Collection /></el-icon>
-        <span class="icon-text">work</span>
+        <span class="icon-text">{{ createdDate.substring(0,10) }}</span>
       </div>
     </div>
   </div>
@@ -98,22 +20,19 @@
 <script setup>
 import { Calendar, ArrowRight, Collection } from "@element-plus/icons-vue";
 
-// import { getCurrentInstance } from 'vue';
-// const {proxy} = getCurrentInstance()
-// const props = defineProps({
-//     title: {
-//         type: String
-//     },
-//     summary: {
-//         type: String
-//     },
-//     time: {
-//         type: Datetime
-//     },
-//     categoryName: {
-//         type: String
-//     },
-// })
+import { getCurrentInstance } from "vue";
+const { proxy } = getCurrentInstance();
+const props = defineProps({
+  title: {
+    type: String,
+  },
+  summary: {
+    type: String,
+  },
+  createdDate: {
+    type: String,
+  }
+});
 </script>
 
 <style lang="scss">

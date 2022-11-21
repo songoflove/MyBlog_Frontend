@@ -6,13 +6,12 @@
       <!-- main -->
       <div class="home-main-box">
         <div class="main-left">
-          <BlogItem></BlogItem>
-          <!-- <div v-for="blog in blogList">
+          <div v-for="blog in blogList">
             <BlogItem :title="blog.title"
                       :summary="blog.summary"
-                      :time="blog.time"
-                      :categoryName="blog.categoryName"></BlogItem>
-          </div> -->
+                      :createdDate="blog.createdDate"
+                      ></BlogItem>
+          </div>
         </div>
         <div class="main-right">
           <div class="right-box0">
@@ -70,12 +69,35 @@
 <script setup>
 import { reactive, ref, getCurrentInstance } from "vue";
 import { useRouter } from "vue-router";
-
-// const {proxy} = getCurrentInstance()
+const {proxy} = getCurrentInstance()
 const router = useRouter();
 const addBlog = () => {
   router.push({ path: "/add" });
 };
+
+const blogList = ref([])
+const api = {
+  "getArticleList": "/articles"
+}
+const getArticleList = async () => {
+  let params = {
+    page: 1,
+    pageSize: 10
+  }
+  let result = await proxy.Request({
+    url: api.getArticleList,
+    params: params,
+    errorCallback: () => {
+        changeCheckCode();
+      }
+  })
+  if (result.code != 200) {
+      return;
+  }
+  blogList.value = result.data
+}
+
+getArticleList()
 
 
 // tags
