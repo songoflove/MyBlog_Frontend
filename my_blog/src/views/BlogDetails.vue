@@ -24,12 +24,10 @@
               </div>
               <div class="icon-item-box">
                 <div class="article-icon">
-                  <router-link to="/edit">
                     <el-button type="success" text>Edit</el-button>
-                  </router-link>
                 </div>
                 <div class="article-icon">
-                  <el-button type="info" text>Delete</el-button>
+                  <el-button type="info" text @click="deleteArticle">Delete</el-button>
                 </div>
               </div>
             </div>
@@ -65,22 +63,41 @@
   </div>
   <!-- Editor area -->
   <!-- <Editor></Editor> -->
+  <!-- <el-dialog
+    v-model="dialogVisible"
+    title="Delete"
+    width="30%"
+  >
+    <span>Are you sure to delete this article?</span>
+    <template #footer>
+      <span class="dialog-footer">
+        <el-button @click="dialogVisible = false">Cancel</el-button>
+        <el-button type="primary" @click="deleteArticle" >
+          Confirm
+        </el-button>
+      </span>
+    </template>
+  </el-dialog> -->
 </template>
 
 <script setup>
 import { Calendar } from "@element-plus/icons-vue";
 import { reactive, ref, getCurrentInstance } from "vue";
+import { ElMessageBox } from 'element-plus'
 
 import { useRoute } from 'vue-router'
 const {proxy} = getCurrentInstance()
 const route = useRoute();
+
+// let dialogVisible = ref(false)
 
 const detailsList = reactive({})
 let id = route.params.id
 
 
 const api = {
-  "viewDetails": "/articles/details/"
+  "viewDetails": "/articles/details/",
+  "delete": "/articles/delete/"
 }
 
 const viewDetails = async () => {
@@ -100,6 +117,35 @@ const viewDetails = async () => {
 }
 
 viewDetails()
+
+// const handleClose = (() => {
+//   console.log(0)
+//   ElMessageBox.confirm('Are you sure to delete this article?')
+//     .then(() => {
+//       deleteArticle()
+//     })
+//     .catch(() => {
+//       // catch error
+//     })
+// })
+
+const deleteArticle = async () => {
+  console.log(1)
+  // dialogVisible = false
+  let result = await proxy.Request({
+    url: api.delete + id,
+    errorCallback: () => {
+        changeCheckCode();
+      }
+  })
+  if (result.code != 200) {
+      return;
+  }
+  console.log(2)
+  setTimeout(() => {
+      router.push("/")
+    }, 1500);
+}
 
 </script>
 
