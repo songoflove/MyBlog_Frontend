@@ -6,16 +6,18 @@
       <div class="home-main-box">
         <div class="main-left">
           <div class="article-content" :model="detailsList">
-            <div class="article-header">{{detailsList.title}}</div>
+            <div class="article-header">{{ detailsList.title }}</div>
             <el-divider class="article-divider" />
             <div class="article-item">
-              {{detailsList.content}}
+              {{ detailsList.content }}
             </div>
             <div class="icon-item">
               <div class="icon-item-box">
                 <div class="article-icon">
                   <el-icon><Calendar /></el-icon>
-                  <span class="icon-text">{{detailsList.createdDate.substring(0,10)}}</span>
+                  <span class="icon-text">{{
+                    detailsList.createdDate.substring(0, 10)
+                  }}</span>
                 </div>
                 <div class="article-icon">
                   <el-icon><Collection /></el-icon>
@@ -24,10 +26,14 @@
               </div>
               <div class="icon-item-box">
                 <div class="article-icon">
-                    <el-button type="success" text>Edit</el-button>
+                  <el-button type="success" text @click="dialog = true"
+                    >Edit</el-button
+                  >
                 </div>
                 <div class="article-icon">
-                  <el-button type="info" text @click="deleteArticle">Delete</el-button>
+                  <el-button type="info" text @click="deleteArticle"
+                    >Delete</el-button
+                  >
                 </div>
               </div>
             </div>
@@ -61,8 +67,41 @@
       <p>MIT Licensed | Copyright &copy; Nicole, 2022 ~ present</p>
     </div>
   </div>
-  <!-- Editor area -->
-  <!-- <Editor></Editor> -->
+  <el-drawer
+    ref="drawerRef"
+    v-model="dialog"
+    title="Edit Article"
+    :before-close="handleClose"
+    direction="ltr"
+    custom-class="demo-drawer"
+  >
+    <div class="demo-drawer__content">
+      <el-form
+        :model="form"
+        label-width="120px"
+        :rules="blogRules"
+        ref="editFormRef"
+      >
+        <el-form-item label="Title" prop="title">
+          <el-input v-model="form.title" />
+        </el-form-item>
+        <el-form-item label="Summary" prop="summary">
+          <el-input v-model="form.summary" type="textarea" />
+        </el-form-item>
+        <el-form-item label="Content" prop="content">
+          <el-input v-model="form.content" type="textarea" />
+        </el-form-item>
+        <el-form-item label="Category" prop="categoryName">
+          <el-input v-model="form.categoryName" />
+        </el-form-item>
+      </el-form>
+      <div class="demo-drawer__footer">
+        <el-button @click="cancelForm">Cancel</el-button>
+        <el-button type="primary" :loading="loading" @click="editArticle">Submit</el-button>
+      </div>
+    </div>
+  </el-drawer>
+
   <!-- <el-dialog
     v-model="dialogVisible"
     title="Delete"
@@ -83,40 +122,45 @@
 <script setup>
 import { Calendar } from "@element-plus/icons-vue";
 import { reactive, ref, getCurrentInstance } from "vue";
-import { ElMessageBox } from 'element-plus'
+import { ElDrawer, ElMessageBox } from "element-plus";
 
-import { useRoute } from 'vue-router'
-const {proxy} = getCurrentInstance()
+import { useRoute } from "vue-router";
+const { proxy } = getCurrentInstance();
 const route = useRoute();
+const form = reactive({});
+const editFormRef = ref();
 
 // let dialogVisible = ref(false)
 
-const detailsList = reactive({})
-let id = route.params.id
-
+const detailsList = reactive({});
+let id = route.params.id;
 
 const api = {
-  "viewDetails": "/articles/details/",
-  "delete": "/articles/delete/"
-}
+  viewDetails: "/articles/details/",
+  delete: "/articles/delete/",
+  "edit": "/articles/edit"
+};
 
 const viewDetails = async () => {
   let result = await proxy.Request({
     url: api.viewDetails + id,
     errorCallback: () => {
-        changeCheckCode();
-      }
-  })
+      changeCheckCode();
+    },
+  });
   if (result.code != 200) {
-      return;
+    return;
   }
-  detailsList.title = result.data.title
-  detailsList.content = result.data.content
-  detailsList.createdDate = result.data.createdDate
+  detailsList.title = result.data.title;
+  detailsList.content = result.data.content;
+  detailsList.createdDate = result.data.createdDate;
+  form.title = result.data.title
+  form.content = result.data.content;
+  form.summary = result.data.summary;
+  console.log(form.title)
+};
 
-}
-
-viewDetails()
+viewDetails();
 
 // const handleClose = (() => {
 //   console.log(0)
@@ -130,23 +174,114 @@ viewDetails()
 // })
 
 const deleteArticle = async () => {
-  console.log(1)
+  console.log(1);
   // dialogVisible = false
   let result = await proxy.Request({
     url: api.delete + id,
     errorCallback: () => {
+      changeCheckCode();
+    },
+  });
+  if (result.code != 200) {
+    return;
+  }
+  console.log(2);
+  setTimeout(() => {
+    router.push("/");
+  }, 1500);
+};
+
+//edit
+const blogRules = reactive({
+  title: [
+    { required: true, message: "Please input title" },
+    { min: 1, max: 30, message: "Length should be 1 to 30", trigger: "blur" },
+  ],
+  summary: [
+    {
+      required: true,
+      message: "Please input summary",
+    },
+    {
+      min: 10,
+      max: 200,
+      message: "Length should be 6 to 200",
+      trigger: "blur",
+    },
+  ],
+  content: [
+    {
+      required: true,
+      message: "Please input content",
+    },
+    { min: 10, message: "Length should be over 10", trigger: "blur" },
+  ],
+});
+
+const formLabelWidth = "80px";
+let timer;
+
+const dialog = ref(false);
+const loading = ref(false);
+
+const editArticle = async () => {
+  editFormRef.value.validate(async (valid) => {
+    if(!valid) {
+      return
+    }
+    let params = {
+      title: form.title,
+      summary: form.summary,
+      content: form.content
+    }
+    let result = await proxy.Request({
+      url: api.edit,
+      params: params,
+      errorCallback: () => {
         changeCheckCode();
       }
-  })
-  if (result.code != 200) {
+    })
+    if (result.code != 2001) {
       return;
-  }
-  console.log(2)
-  setTimeout(() => {
+    }
+    setTimeout(() => {
       router.push("/")
     }, 1500);
-}
+  })
+};
 
+// const drawerRef = ref<InstanceType<typeof ElDrawer>>()
+const onClick = () => {
+  // drawerRef.value!.close()
+};
+
+const handleClose = (done) => {
+  if (loading.value) {
+    return;
+  }
+  console.log("close")
+  ElMessageBox.confirm("Do you want to submit?")
+    .then(() => {
+      editArticle()
+      loading.value = true;
+      timer = setTimeout(() => {
+        done();
+        // 动画关闭需要一定的时间
+        setTimeout(() => {
+          loading.value = false;
+        }, 400);
+      }, 2000);
+    })
+    .catch(() => {
+      // catch error
+    });
+};
+
+const cancelForm = () => {
+  loading.value = false;
+  dialog.value = false;
+  clearTimeout(timer);
+};
 </script>
 
 <style lang="scss">
