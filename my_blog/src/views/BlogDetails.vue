@@ -5,22 +5,17 @@
       <!-- main -->
       <div class="home-main-box">
         <div class="main-left">
-          <div class="article-content">
-            <div class="article-header">Article1 Title</div>
+          <div class="article-content" :model="detailsList">
+            <div class="article-header">{{detailsList.title}}</div>
             <el-divider class="article-divider" />
             <div class="article-item">
-              <span
-                >This is article 1.This is article 1.This is article 1. This is
-                article 1.This is article 1.This is article 1. This is article
-                1.This is article 1.This is article 1.This is article 1. This is
-                article 1.This is article 1.</span
-              ><br />
+              {{detailsList.content}}
             </div>
             <div class="icon-item">
               <div class="icon-item-box">
                 <div class="article-icon">
                   <el-icon><Calendar /></el-icon>
-                  <span class="icon-text">2022-11-14</span>
+                  <span class="icon-text">{{detailsList.createdDate.substring(0,10)}}</span>
                 </div>
                 <div class="article-icon">
                   <el-icon><Collection /></el-icon>
@@ -74,6 +69,38 @@
 
 <script setup>
 import { Calendar } from "@element-plus/icons-vue";
+import { reactive, ref, getCurrentInstance } from "vue";
+
+import { useRoute } from 'vue-router'
+const {proxy} = getCurrentInstance()
+const route = useRoute();
+
+const detailsList = reactive({})
+let id = route.params.id
+
+
+const api = {
+  "viewDetails": "/articles/details/"
+}
+
+const viewDetails = async () => {
+  let result = await proxy.Request({
+    url: api.viewDetails + id,
+    errorCallback: () => {
+        changeCheckCode();
+      }
+  })
+  if (result.code != 200) {
+      return;
+  }
+  detailsList.title = result.data.title
+  detailsList.content = result.data.content
+  detailsList.createdDate = result.data.createdDate
+
+}
+
+viewDetails()
+
 </script>
 
 <style lang="scss">

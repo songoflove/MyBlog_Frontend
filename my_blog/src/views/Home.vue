@@ -9,6 +9,7 @@
           <div v-for="blog in blogList" :key="blog.id">
             <BlogItem :title="blog.title"
                       :summary="blog.summary"
+                      :content="blog.content"
                       :createdDate="blog.createdDate"
                       :id="blog.id"
                       ></BlogItem>

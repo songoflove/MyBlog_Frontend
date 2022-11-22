@@ -35,6 +35,9 @@ const props = defineProps({
   summary: {
     type: String,
   },
+  content: {
+    type: String,
+  },
   createdDate: {
     type: String,
   },
@@ -44,20 +47,26 @@ const props = defineProps({
 });
 
 const viewDetails = async () => {
-    let result = await proxy.Request({
-      url: api.viewDetails + props.id,
-      errorCallback: () => {
-        changeCheckCode();
-      }
-    })
-    if (result.code != 200) {
-      return;
-    }
-    // proxy.message.success("登录成功");
-    setTimeout(() => {
-      router.push("/blogDetails")
-    }, 1500);
+  // router.push("/blogDetails")
+  router.push({name:'blogDetails', params:{id:props.id}})
 }
+
+// const viewDetails = async () => {
+//     let result = await proxy.Request({
+//       url: api.viewDetails + props.id,
+//       errorCallback: () => {
+//         changeCheckCode();
+//       }
+//     })
+//     if (result.code != 200) {
+//       return;
+//     }
+//     this.props.showDetails = true
+//     // proxy.message.success("登录成功");
+//     // setTimeout(() => {
+//     //   router.push("/blogDetails")
+//     // }, 1500);
+// }
 
 
 </script>
