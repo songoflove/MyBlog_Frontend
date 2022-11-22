@@ -4,7 +4,7 @@
     <el-divider class="article-divider" />
     <div class="article-item">
       <div>{{ summary }}</div>
-      <el-button text
+      <el-button text @click="viewDetails"
         >Read more
         <el-icon><ArrowRight /></el-icon>
       </el-button>
@@ -19,9 +19,15 @@
 </template>
 <script setup>
 import { Calendar, ArrowRight, Collection } from "@element-plus/icons-vue";
+import { reactive, ref, getCurrentInstance } from "vue";
+import { useRouter } from 'vue-router'
 
-import { getCurrentInstance } from "vue";
 const { proxy } = getCurrentInstance();
+const router = useRouter();
+const api = {
+  viewDetails: "/articles/details/"
+}
+
 const props = defineProps({
   title: {
     type: String,
@@ -31,8 +37,29 @@ const props = defineProps({
   },
   createdDate: {
     type: String,
+  },
+  id: {
+    type: Number
   }
 });
+
+const viewDetails = async () => {
+    let result = await proxy.Request({
+      url: api.viewDetails + props.id,
+      errorCallback: () => {
+        changeCheckCode();
+      }
+    })
+    if (result.code != 200) {
+      return;
+    }
+    // proxy.message.success("登录成功");
+    setTimeout(() => {
+      router.push("/blogDetails")
+    }, 1500);
+}
+
+
 </script>
 
 <style lang="scss">

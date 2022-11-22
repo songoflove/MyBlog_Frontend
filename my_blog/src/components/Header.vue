@@ -17,7 +17,7 @@
     </div>
     <el-divider class="nav-divider" />
     <div class="navigation-bar">
-      <router-link class="nav-text" to="/home">HOME</router-link>
+      <router-link class="nav-text" to="/">HOME</router-link>
       <router-link class="nav-text" to="/life">LIFE</router-link>
       <router-link class="nav-text" to="/work">WORK</router-link>
       <router-link class="nav-text" to="/study">STUDY</router-link>

@@ -6,10 +6,11 @@
       <!-- main -->
       <div class="home-main-box">
         <div class="main-left">
-          <div v-for="blog in blogList">
+          <div v-for="blog in blogList" :key="blog.id">
             <BlogItem :title="blog.title"
                       :summary="blog.summary"
                       :createdDate="blog.createdDate"
+                      :id="blog.id"
                       ></BlogItem>
           </div>
         </div>
