@@ -2,9 +2,7 @@ import axios from 'axios'
 
 import { ElLoading } from 'element-plus'
 import router from '@/router'
-// import message from '@/utils/Message'
 
-// const contentTypeForm = "application/x-www-form-urlencoded;charset=UTF-8";
 const contentTypeJson = "application/json";
 
 
@@ -27,10 +25,17 @@ const request = (config) => {
             if (showLoading) {
                 loading = ElLoading.service({
                     lock: true,
-                    text: '加载中......',
+                    text: 'Loading......',
                     background: 'rgba(0, 0, 0, 0.7)',
                 })
             }
+            // let token = state.token || ''
+            // if (token) {
+            //     //把token添加到请求头部
+            //     config.headers = {
+            //         authorization: token
+            //     };
+            // }
             return config;
         },
         (error) => {
