@@ -11,6 +11,9 @@ import BlogItem from "./components/BlogItem.vue";
 import Editor from "./components/Editor.vue";
 import ArticleCard from "./components/ArticleCard.vue";
 
+// import cookies from 'vue-cookies'
+
+// Vue.prototype.$cookies=cookies
 
 import Request from './utils/Request'
 

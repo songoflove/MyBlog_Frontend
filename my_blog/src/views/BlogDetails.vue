@@ -260,21 +260,21 @@ const handleClose = (done) => {
     return;
   }
   console.log("close")
-  ElMessageBox.confirm("Do you want to submit?")
-    .then(() => {
-      editArticle()
-      loading.value = true;
-      timer = setTimeout(() => {
-        done();
-        // 动画关闭需要一定的时间
-        setTimeout(() => {
-          loading.value = false;
-        }, 400);
-      }, 2000);
-    })
-    .catch(() => {
-      // catch error
-    });
+  // ElMessageBox.confirm("Do you want to submit?")
+  //   .then(() => {
+  //     editArticle()
+  //     loading.value = true;
+  //     timer = setTimeout(() => {
+  //       done();
+  //       // 动画关闭需要一定的时间
+  //       setTimeout(() => {
+  //         loading.value = false;
+  //       }, 400);
+  //     }, 2000);
+  //   })
+  //   .catch(() => {
+  //     // catch error
+  //   });
 };
 
 const cancelForm = () => {

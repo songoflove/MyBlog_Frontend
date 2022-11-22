@@ -24,7 +24,7 @@
           @click="register"
           >Register</el-button
         >
-        <div class="info">Already have an account? <a href="/register" style="color:#800080">Login</a></div>
+        <div class="info">Already have an account? <a href="/login" style="color:#800080">Login</a></div>
       </el-form>
     </div>
   </div>

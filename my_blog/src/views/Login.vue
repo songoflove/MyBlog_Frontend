@@ -74,6 +74,7 @@ const login = () => {
     if (result.code != 200) {
       return;
     }
+    // this.$cookies.set("authorization",result.data,'1d')
     // proxy.message.success("登录成功");
     setTimeout(() => {
       router.push("/")
