@@ -287,7 +287,6 @@ const cancelForm = () => {
 <style lang="scss">
 .home-body {
   position: relative;
-  background-color: #fffcf6;
   width: 100%;
   min-height: 100%;
 }
@@ -305,7 +304,6 @@ const cancelForm = () => {
   width: 100%;
   padding-bottom: 15px;
   margin-top: 15px;
-  background-color: #fffcf6;
 }
 
 // main-box-left

@@ -133,7 +133,6 @@ const onSubmit = () => {
 
 <style lang="scss">
 .home-body {
-  background-color: #fffcf6;
   width: 100%;
   min-height: 100%;
 }
@@ -151,7 +150,6 @@ const onSubmit = () => {
   height: 60px;
   padding-bottom: 15px;
   margin-top: 15px;
-  background-color: #fffcf6;
 }
 
 // main-box-left

@@ -5,7 +5,7 @@ import { resolve } from 'path'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [vue()],
-  // base: "./",
+  base: "./",
   build:{
     target: 'modules',
     outDir: 'dist', //指定输出路径
